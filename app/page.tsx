@@ -48,7 +48,6 @@ export default function Home() {
     window.location.href = link;
   };
 
-  // 修改結構化資料
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -66,6 +65,7 @@ export default function Home() {
         priceCurrency: "TWD",
       },
     },
+    sameAs: ["https://instagram.com/ukhsc_2025"],
   };
 
   return (
@@ -200,7 +200,7 @@ export default function Home() {
                 ].map((school) => (
                   <div
                     key={school}
-                    className="bg-white/50 p-4 rounded-xl text-center hover:bg-gray-50 transition-colors"
+                    className="bg-white/50 p-4 rounded-xl text-center transition-colors"
                   >
                     {school}
                   </div>
@@ -211,14 +211,22 @@ export default function Home() {
             {/* Footer */}
             <footer className="mt-16 text-base text-gray-700 border-t border-gray-300 pt-8">
               <p>聯繫方式：contact@ukhsc.org</p>
-              <div className="mt-3">
+              <div className="mt-3 flex gap-4">
+                <a
+                  href="https://instagram.com/ukhsc_2025/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="在 Instagram 追蹤我們"
+                  className="underline hover:text-gray-900"
+                >
+                  Instagram
+                </a>
                 <a
                   href="/legal/terms"
                   className="underline hover:text-gray-900"
                 >
                   使用者服務條款
                 </a>
-                <span className="mx-2">|</span>
                 <a
                   href="/legal/privacy-policy"
                   className="underline hover:text-gray-900"
