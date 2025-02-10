@@ -16,9 +16,6 @@ export const metadata: Metadata = {
   title: "下載高校特約 APP | 官方網站",
   description:
     "下載高校特約聯盟官方 APP，享受數位會員卡、特約商店資訊及發票載具整合等服務。由高雄市各高中職學生會共同發起的特約商店計畫，目前已邁入第七屆。",
-  icons: {
-    apple: [{ url: "/favicon.ico" }],
-  },
   keywords: [
     "高校特約聯盟",
     "APP下載",
@@ -41,6 +38,10 @@ export const metadata: Metadata = {
         alt: "高校特約聯盟 APP 下載頁面",
       },
     ],
+  },
+  icons: {
+    icon: "favicon.ico",
+    apple: "favicon.ico",
   },
   robots: {
     index: true,
