@@ -13,7 +13,7 @@ const introPhotos = [
 ];
 
 const APP_LINKS = {
-  iOS: "",
+  iOS: "https://web.ukhsc.org",
   Android: "https://play.google.com/store/apps/details?id=org.ukhsc.mobile",
 };
 
@@ -116,7 +116,9 @@ export default function Home() {
                 className="bg-darkblue text-white m-1 p-3 px-5 rounded-full font-medium font-sans flex items-center gap-5"
               >
                 <p>
-                  前往 {userSystem === "iOS" ? "App Store" : "Google Play"} 下載
+                  {userSystem === "iOS"
+                    ? "安裝 PWA 版本"
+                    : "前往 Google Play 下載"}
                 </p>
                 <Download size={20} />
               </button>
