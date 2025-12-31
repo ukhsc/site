@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Download, ChevronDown, X } from "lucide-react";
+import { Download, ChevronDown, X, Info, ChevronRight } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
+
+const ANNOUNCEMENT = {
+  title: "高校特約系統終止運作公告",
+  summary: "第七屆特約系統已停止服務",
+};
 
 const introPhotos = [
   "/intro/Screenshot1.png",
@@ -20,6 +25,7 @@ const APP_LINKS = {
 export default function Home() {
   const [userSystem, setUserSystem] = useState<string>("unknown");
   const [showQRCode, setShowQRCode] = useState(false);
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
 
   useEffect(() => {
     const checkUserSystem = () => {
@@ -74,7 +80,18 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className="w-full flex justify-center p-5 fixed top-0 bg-orange z-10">
+      {/* Announcement Banner */}
+      <div
+        onClick={() => setShowAnnouncement(true)}
+        className="w-full bg-darkblue text-white py-2 px-4 fixed top-0 z-20 cursor-pointer hover:bg-darkblue/90 transition-colors"
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-sm">
+          <Info size={16} className="flex-shrink-0" />
+          <span className="truncate">{ANNOUNCEMENT.summary}</span>
+          <ChevronRight size={16} className="flex-shrink-0 text-white/70" />
+        </div>
+      </div>
+      <header className="w-full flex justify-center p-5 fixed top-8 bg-orange z-10">
         <Image
           alt="高校特約聯盟官方網站 Logo"
           src={"/text_logo/darkblue.svg"}
@@ -88,7 +105,7 @@ export default function Home() {
         {/* Hero Section */}
         <div
           className={`flex flex-col items-center justify-center max-w-7xl mx-auto px-4 ${
-            userSystem !== "Desktop" ? "h-dvh" : "mt-24"
+            userSystem !== "Desktop" ? "h-dvh" : "mt-32"
           }`}
         >
           <Image
@@ -259,6 +276,45 @@ export default function Home() {
                 <br />
                 即可前往下載頁面。
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Announcement Modal */}
+      {showAnnouncement && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setShowAnnouncement(false)}
+        >
+          <div
+            className="bg-white rounded-2xl relative max-w-lg w-full mx-4 p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowAnnouncement(false)}
+              className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+            >
+              <X size={24} />
+            </button>
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xl font-bold text-darkblue">
+                {ANNOUNCEMENT.title}
+              </h3>
+              <div className="text-gray-700 leading-relaxed space-y-4">
+                <p>第七屆高校特約合作已結束，系統自即日起停止運作。</p>
+                <p>
+                  App 與會員功能已無法使用，特約優惠也已全面終止。若你是會員，依
+                  <a
+                    href="/legal/privacy-policy"
+                    className="text-darkblue underline hover:text-darkblue/70"
+                  >
+                    隱私權政策
+                  </a>
+                  ，個人資料將於 2026 年 1 月 1 日前完成刪除，屆時無需任何操作。
+                </p>
+                <p>謝謝你曾經參與，期待未來再相見。</p>
+              </div>
             </div>
           </div>
         </div>
